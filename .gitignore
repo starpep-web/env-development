@@ -1,0 +1,3 @@
+rabbitmq/
+tmp_artifacts/
+.env

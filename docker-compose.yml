@@ -1,0 +1,44 @@
+name: starpep-web-dev
+
+services:
+  cache:
+    image: redis:7-alpine
+    restart: no
+    ports:
+      - 6379:6379
+    environment:
+      TZ: ${TIMEZONE}
+
+  queue:
+    image: rabbitmq:3-management
+    restart: no
+    ports:
+      - 5672:5672
+      - 15672:15672
+    volumes:
+      - ./rabbitmq:/var/lib/rabbitmq
+    environment:
+      TZ: ${TIMEZONE}
+      RABBITMQ_DEFAULT_USER: admin
+      RABBITMQ_DEFAULT_PASS: pass
+
+  neo4j:
+    image: ghcr.io/starpep-web/neo4j-db:${NEO4J_TAG}
+    restart: no
+    ports:
+      - 7687:7687
+      - 7474:7474
+    environment:
+      TZ: ${TIMEZONE}
+      NEO4J_AUTH: none
+
+  files:
+    image: ghcr.io/starpep-web/static-file-server:latest
+    restart: unless-stopped
+    ports:
+      - 10000:8080
+    volumes:
+      - ${STATIC_FILES_LOCATION}:/files:ro
+      - ./tmp_artifacts:/tmp/files:ro
+    environment:
+      TZ: ${TIMEZONE}
