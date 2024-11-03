@@ -2,7 +2,7 @@
 
 This repository contains a Docker Compose environment to spin-up some common service dependencies necessary for the local development of this application.
 
-For the `static-file-server` container, you'll need to have some files to serve locally, especially to develop for [api-bio](https://github.com/starpep-web/api-bio), so make sure to check the [assets](https://github.com/starpep-web/assets) repo for more information on how to acquire those files.
+For the `files` container, you'll need to have some files to serve locally, especially to develop for [api-bio](https://github.com/starpep-web/api-bio), so make sure to check the [assets](https://github.com/starpep-web/assets) repo for more information on how to acquire those files.
 
 ## Requirements
 
